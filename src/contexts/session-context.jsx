@@ -10,6 +10,7 @@ class SessionProvider extends Component {
     this.state = {
       user: {},
       token: null,
+      model: this.props.model || 'user',
       loadUser: this.loadUser.bind(this),
       authenticated: this.authenticated.bind(this),
       authenticate: this.authenticate.bind(this),
@@ -23,18 +24,18 @@ class SessionProvider extends Component {
   componentDidMount() {
     let userId = LocalStorage.get('userId');
     let token = LocalStorage.get('token');
-    userId && token ? this.loadUser(this.props.model, userId, token, this.props.params) : this.setState({ loaded: true });
+    userId && token ? this.loadUser(this.state.model, userId, token, this.props.params) : this.setState({ loaded: true });
   }
 
 
-  // Tasks
+  // Methods
   async loadUser(modelName, modelId, token, params = {}) {
     try {
       if (!this.props.store) {  return };
-      await this.props.store.adapterFor('app').set('token', token);
+      this.props.store.adapterFor('app').token = token;
       let model = await this.props.store.queryRecord(modelName, modelId, params);
-      await this.setState({ token: token, user: model });
       logger('Session authenticated: ', this.state);
+      await this.setState({ token: token, user: model });
     } catch(e) {
       await this.logout();
     } finally {
@@ -43,27 +44,17 @@ class SessionProvider extends Component {
   }
 
   async authenticate(model, data) {
-    try {
-      LocalStorage.set('userId', data.id);
-      LocalStorage.set('token', data.token);
-      await this.loadUser(model, data.id, data.token, {});
-    } catch(e) {
-      throw e;
-    }
+    LocalStorage.set('userId', data.id);
+    LocalStorage.set('token', data.token);
+    return await this.loadUser(model, data.id, data.token, {});
   }
 
   async logout() {
-    try {
-      localStorage.clear();
-      await this.setState({ userId: '', token: '', user: {} });
-      logger('Session terminated: ', this.state);
-    } catch(e) {
-      throw e;
-    }
+    localStorage.clear();
+    logger('Session terminated: ', this.state);
+    await this.setState({ userId: '', token: '', user: {} });
   }
 
-
-  // Methods
   authenticated() {
     return this.state.user.id ? true : false;
   }
@@ -72,7 +63,7 @@ class SessionProvider extends Component {
   // Render
   render() {
     const { loaded } = this.state;
-    const { children } = this.props;
+    const { store, children } = this.props;
 
     return (
       <SessionContext.Provider value={this.state}>
