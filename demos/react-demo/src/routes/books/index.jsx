@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import BookList from 'components/book/book-list';
-import { BtnLink } from 'components/basics/links';
+import { LinkBtn } from 'components/basics/links';
 import { MktRoute } from 'components/basics/routes';
 import { Container, Row, Col } from 'components/basics/grids';
 import { SectionBlock, SectionHeader, SectionBody, SectionFooter } from 'components/basics/sections';
 import { Pagination } from 'components/basics/pagination';
-import { timeout } from 'utils/helpers';
+import { FarIcon } from 'components/vendors/fa-wrapper';
 
 const BooksRoute = (props) => {
 	const { store = {}, toast, history } = props;
@@ -55,7 +55,9 @@ const BooksRoute = (props) => {
 
 				<SectionBlock>
 					<SectionHeader title='Books' className='flex-between'>
-						<BtnLink to='books/new' className='btn-sm btn-primary'>Add New</BtnLink>
+						<LinkBtn to='books/new' className='btn-sm btn-primary'>
+							Add New<FarIcon icon='chevron-right' className='ml-2'/>
+						</LinkBtn>
 					</SectionHeader>
 					<SectionBody>
 						<BookList books={books} loading={loading} />

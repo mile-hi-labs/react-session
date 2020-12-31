@@ -35,16 +35,14 @@ const ToastProvider = (props) => {
   }
 
   const buildMsg = (err = []) => {
-    let message = '';
-    logger('Error: ', err);
     if (Array.isArray(err)) {
+      let message = '';
       err.forEach((error, index) => {
-        message = error.detail + "\n";
+        message = error.detail ? error.detail.replace(/,/g, '\n') : 'Please format your error message.';
       });
-    } else {
-      message = 'Sorry, there was an error.';
+      return message;
     }
-    return message;
+    return 'Sorry, there was an error.';
   }
 
 

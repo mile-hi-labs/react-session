@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { StoreProvider } from '@mile-hi-labs/react-data';
+import { StoreContext, StoreProvider } from '@mile-hi-labs/react-data';
+import { SessionProvider } from '@mile-hi-labs/react-session';
 import { ToastProvider } from 'contexts/toast-context';
 import * as Adapters from 'adapters';
 import * as Serializers from 'serializers';
@@ -14,9 +15,15 @@ const App = (props) => {
   // Render
   return (
     <StoreProvider adapters={Adapters} serializers={Serializers} models={Models} apiDomain={apiDomain}>
-      <ToastProvider>
-        <Router />
-      </ToastProvider>
+    	<StoreContext.Consumer>
+    		{store => (
+		    	<SessionProvider store={store}>
+		      	<ToastProvider>
+		        	<Router />
+		      	</ToastProvider>
+		    	</SessionProvider>
+	    	)}
+    	</StoreContext.Consumer>
     </StoreProvider>
   );
 }

@@ -8,6 +8,7 @@ class User extends AppModel {
 		this.photo = props.photo;
 		this.name = props.name;
 		this.email = props.email;
+		this.token = props.token;
 
 
 		// Relationships

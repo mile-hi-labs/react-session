@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import RBToast from 'react-bootstrap/Toast';
+import SanitizedHTML from 'react-sanitized-html';
 import { Fade } from 'components/basics/animations';
 import { FarIcon } from 'components/vendors/fa-wrapper';
 import { logger } from 'utils/helpers';
@@ -33,7 +34,7 @@ const ToastSuccess = (props) => {
     <RBToast show={true} className={'success ' + animation} onClose={removeToast}>
       <RBToast.Header closeButton={false}>
       	<FarIcon icon='check'/>
-      	<strong className='ml-15 mr-auto'>{toast.message}</strong>
+      	<strong className='ml-15 mr-auto'><SanitizedHTML html={toast.message}/></strong>
       	<small></small>
     	</RBToast.Header>
     </RBToast>
@@ -48,7 +49,7 @@ const { toast, animation, removeToast } = props;
     <RBToast show={true} className={`info ${animation}`} onClose={removeToast}>
       <RBToast.Header closeButton={false}>
       	<FarIcon icon='info-circle'/>
-      	<strong className='ml-15 mr-auto'>{toast.message}</strong>
+      	<strong className='ml-15 mr-auto'><SanitizedHTML html={toast.message}/></strong>
       	<small></small>
     	</RBToast.Header>
     </RBToast>
@@ -63,7 +64,7 @@ const ToastError = (props) => {
     <RBToast show={true} className={`error ${animation}`} onClose={removeToast}>
       <RBToast.Header closeButton={false}>
       	<FarIcon icon='times-circle'/>
-      	<strong className='ml-15 mr-auto'>{toast.message}</strong>
+      	<strong className='ml-15 mr-auto'><SanitizedHTML html={toast.message}/></strong>
       	<small></small>
     	</RBToast.Header>
     </RBToast>

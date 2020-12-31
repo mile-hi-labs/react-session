@@ -22,6 +22,7 @@ class SessionProvider extends Component {
 
   // Hooks
   componentDidMount() {
+    logger('React Session initiated...');
     let userId = LocalStorage.get('userId');
     let token = LocalStorage.get('token');
     userId && token ? this.loadUser(this.state.model, userId, token, this.props.params) : this.setState({ loaded: true });
@@ -33,7 +34,7 @@ class SessionProvider extends Component {
     try {
       if (!this.props.store) {  return };
       this.props.store.adapterFor('app').token = token;
-      let model = await this.props.store.queryRecord(modelName, modelId, params);
+      let model = await this.props.store.findRecord(modelName, modelId, params);
       logger('Session authenticated: ', this.state);
       await this.setState({ token: token, user: model });
     } catch(e) {
@@ -51,8 +52,8 @@ class SessionProvider extends Component {
 
   async logout() {
     localStorage.clear();
-    logger('Session terminated: ', this.state);
     await this.setState({ userId: '', token: '', user: {} });
+    logger('Session terminated: ', this.state);
   }
 
   authenticated() {

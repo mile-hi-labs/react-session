@@ -40,7 +40,7 @@ const DropdownItem = (props) => {
 	const { as, title, onClick, className = '', children } = props;
 
 	return (
-		<RbDropdown.Item as={ButtonWrapper} onClick={onClick} className={className}>
+		<RbDropdown.Item onClick={onClick} className={className}>
 			{title && title}
 			{children && children}
 		</RbDropdown.Item>
