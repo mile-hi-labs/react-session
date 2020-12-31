@@ -1472,12 +1472,20 @@
     "@types/yargs" "^15.0.0"
     "chalk" "^4.0.0"
 
-"@mile-hi-labs/react-data@^2.0.10":
+"@mile-hi-labs/react-data@latest":
   "integrity" "sha512-7eogcBPX8A6z0hR3zO33fhVtkLv3uXUdZLYTNRXr6Tqo29LJU530AssfMU2BMzjnW+Xgb2C21p8NjJgkzqM1sQ=="
   "resolved" "https://registry.npmjs.org/@mile-hi-labs/react-data/-/react-data-2.0.10.tgz"
   "version" "2.0.10"
   dependencies:
     "axios" "^0.19.2"
+    "pluralize" "^8.0.0"
+
+"@mile-hi-labs/react-session@latest":
+  "integrity" "sha512-SE/Ac8xaadQECuxhZ6ccxx8jJBG7jyBDIkNr54lRkzS/ot5sAp3YPjKC2LOyQosTihuNDweW8ZCtOjSYMB9x3g=="
+  "resolved" "https://registry.npmjs.org/@mile-hi-labs/react-session/-/react-session-2.0.1.tgz"
+  "version" "2.0.1"
+  dependencies:
+    "local-storage" "^2.0.0"
     "pluralize" "^8.0.0"
 
 "@nodelib/fs.scandir@2.1.3":
@@ -7451,6 +7459,11 @@
     "big.js" "^5.2.2"
     "emojis-list" "^2.0.0"
     "json5" "^1.0.1"
+
+"local-storage@^2.0.0":
+  "integrity" "sha512-/0sRoeijw7yr/igbVVygDuq6dlYCmtsuTmmpnweVlVtl/s10pf5BCq8LWBxW/AMyFJ3MhMUuggMZiYlx6qr9tw=="
+  "resolved" "https://registry.npmjs.org/local-storage/-/local-storage-2.0.0.tgz"
+  "version" "2.0.0"
 
 "locate-path@^2.0.0":
   "integrity" "sha1-K1aLJl7slExtnA3pw9u7ygNUzY4="
