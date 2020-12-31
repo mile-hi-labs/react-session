@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Switch, Route, Redirect, useParams, useRouteMatch } from 'react-router-dom';
 import { withSession } from '@mile-hi-labs/react-session';
 import { withStore } from '@mile-hi-labs/react-data';
@@ -32,15 +32,21 @@ const Router = (props) => {
 	      <Route exact path='/' render={routeProps => <IndexRoute {...passedProps} {...routeProps}/>} />
         <Route exact path='/login' render={routeProps => <LoginRoute {...passedProps} {...routeProps}/>} />
         <Route exact path='/register' render={routeProps => <RegisterRoute {...passedProps} {...routeProps}/>} />
-        <Route exact path='/books' render={routeProps => <BooksRoute {...passedProps} {...routeProps}/>} />
-        <Route exact path='/books/new' render={routeProps => <BooksNewRoute {...passedProps} {...routeProps}/>} />
-        <Route path='/books/:bookId'>
-          <BooksDetail {...passedProps} />
-        </Route>
+        {session.authenticated() ? (
+          <Fragment>
+            <Route exact path='/books' render={routeProps => <BooksRoute {...passedProps} {...routeProps}/>} />
+            <Route exact path='/books/new' render={routeProps => <BooksNewRoute {...passedProps} {...routeProps}/>} />
+            <Route path='/books/:bookId'>
+              <BooksDetail {...passedProps} />
+            </Route>
 
-        <Route path='/users/:userId'>
-          <UsersDetail {...passedProps} />
-        </Route>
+            <Route path='/users/:userId'>
+              <UsersDetail {...passedProps} />
+            </Route>
+          </Fragment>
+        ) : (
+          <Redirect to='/login'/>
+        )}
 
         <Route path='/*'>
           <Redirect to='/'/>
