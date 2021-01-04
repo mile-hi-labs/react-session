@@ -47,7 +47,7 @@ export default App;
 ```
 
 ### Session Consumer
-Then, you can access the session from any route or component like so:
+Then, you can access the session from any component like so:
 
 ```
 // components/bootstrap/navbar-wrapper.jsx
@@ -158,8 +158,12 @@ export default withSession(LoginForm);
 ```
 
 
+## Demo
+This project comes with a built-in React demo.
+
+
 ## Development
-This project uses Webpack and comes with both a development and production environment. See `package.json` for more details.
+This projects uses Webpack to build the project. Please see `package.json` for available scripts.
 - Clone this repository
 - Run `npm link` from this library
 - Open up a project where you'd like to use this library
@@ -169,7 +173,7 @@ This project uses Webpack and comes with both a development and production envir
 
 
 ## Links
-- [Github](https://github.com/MileHiLabs/react-session)
+- [Github](https://github.com/mile-hi-labs/react-session)
 - [API Documentation](https://app.gitbook.com/@mile-hi-labs/s/react-session/)
 - [Mile Hi Labs](https://milehilabs.io)
 
