@@ -9,12 +9,6 @@ import IndexRoute from 'routes/index';
 
 import LoginRoute from 'routes/auth/login';
 import RegisterRoute from 'routes/auth/register';
-
-import BooksRoute from 'routes/books/index';
-import BooksNewRoute from 'routes/books/new';
-import BooksDetailRoute from 'routes/books/detail';
-import BooksEditRoute from 'routes/books/edit';
-
 import UsersDetailRoute from 'routes/users/detail';
 
 // Utils
@@ -33,17 +27,9 @@ const Router = (props) => {
         <Route exact path='/login' render={routeProps => <LoginRoute {...passedProps} {...routeProps}/>} />
         <Route exact path='/register' render={routeProps => <RegisterRoute {...passedProps} {...routeProps}/>} />
         {session.authenticated() ? (
-          <Fragment>
-            <Route exact path='/books' render={routeProps => <BooksRoute {...passedProps} {...routeProps}/>} />
-            <Route exact path='/books/new' render={routeProps => <BooksNewRoute {...passedProps} {...routeProps}/>} />
-            <Route path='/books/:bookId'>
-              <BooksDetail {...passedProps} />
-            </Route>
-
-            <Route path='/users/:userId'>
-              <UsersDetail {...passedProps} />
-            </Route>
-          </Fragment>
+          <Route path='/users/:userId'>
+            <UsersDetail {...passedProps} />
+          </Route>
         ) : (
           <Redirect to='/login'/>
         )}
@@ -54,18 +40,6 @@ const Router = (props) => {
 	    </Switch>
     </ErrorBoundary>
   );
-}
-
-const BooksDetail = (props) => {
-  const { path } = useRouteMatch();
-  const { bookId } = useParams();
-
-  return (
-    <Switch>
-      <Route exact path={path} render={routeProps => <BooksDetailRoute bookId={bookId} {...props} {...routeProps} />} />
-      <Route exact path={path + '/edit'} render={routeProps => <BooksEditRoute bookId={bookId} {...props} {...routeProps} />} />
-    </Switch>
-  )
 }
 
 const UsersDetail = (props) => {

@@ -14,7 +14,7 @@ const LoginRoute = (props) => {
 			<Container className='sm pt-3 pb-3'>
 
 				<SectionBlock>
-					<LoginForm nextAction={user => history.push('/books')} />
+					<LoginForm nextAction={user => history.push(`/users/${user.id}`)} />
 				</SectionBlock>
 
 			</Container>

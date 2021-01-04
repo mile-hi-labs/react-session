@@ -1,9 +1,9 @@
 ## Overview
-React Session is a session management library for React web applications. The library is a lightweight abstraction built on local-storage and is designed to work independently or in partnership with [React Data](https://github.com/Mile-Hi-Labs/react-data).
+React Session is a session management library for React web applications. The library is built on local-storage and designed to work with [React Data](https://github.com/mile-hi-labs/react-data).
 
 
 ## How it Works
-React Session uses the [Context Hook](https://reactjs.org/docs/context.html) api to provide a global session where you can authenticate and persist the current user across multiple browser windows or sessions. Once authenticated, React-Session will also automatically add a JWT token to all API requests sent using React Data. To learn more about React Session, visit the [API Documentation](https://app.gitbook.com/@mile-hi-labs/s/react-session/). 
+React Session uses the [Context Hook](https://reactjs.org/docs/context.html) api to provide a global session where you can authenticate and persist the current user across multiple browser windows or sessions. Once authenticated, React-Session will also automatically add a JWT token to all API requests sent using React Data. To learn more about React Session, visit the [API Documentation](https://app.gitbook.com/@mile-hi-labs/s/react-session/).
 
 
 ## Quick Start
@@ -20,7 +20,7 @@ import { storeContext } from 'react-data';
 
 
 const App = (props) => {
-  
+
   return (
     <div id='application' className='application'>
       <SessionContext>
@@ -41,16 +41,16 @@ import { withSession } from '@mile-hi-labs/react-session';
 import Auth from 'apis/auth';
 import Form from 'react-bootstrap/Form';
 
-const LoginForm = (props) => {  
+const LoginForm = (props) => {
   const { session, nextAction } = props;
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ taskRunning, setTaskRunning ] = useState(false);
 
-  
+
   // Tasks
   const login = async () => {
-    try { 
+    try {
     	setTaskRunning(true);
       let model = await Auth.login({email: email, password: password});
       await session.authenticate('admin', model);
@@ -76,9 +76,9 @@ const LoginForm = (props) => {
     <Form onSubmit={handleSubmit}>
       <Form.Group controlId='email'>
         <Form.Label>Email Address</Form.Label>
-        <Form.Control 
-          type='email' 
-          placeholder='redford@hollywood.com' 
+        <Form.Control
+          type='email'
+          placeholder='redford@hollywood.com'
           value={email}
           onChange={e => setEmail(e.target.value)}
         />
@@ -86,9 +86,9 @@ const LoginForm = (props) => {
 
       <Form.Group controlId='email'>
         <Form.Label>Password</Form.Label>
-        <Form.Control 
-          type='password' 
-          placeholder='••••••••' 
+        <Form.Control
+          type='password'
+          placeholder='••••••••'
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
@@ -122,7 +122,7 @@ import Nav from 'react-bootstrap/Nav';
 
 const NavBarWrapper = (props) => {
 	const { session } = props;
-		
+
 	return (
 			<Navbar collapseOnSelect expand='lg' bg='light' variant='light'>
 			<Navbar.Brand href='/' className='mr-15'>Company Name</Navbar.Brand>
@@ -151,16 +151,16 @@ export default withSession(NavBarWrapper);
 ## FAQ
 
 #### Why React Session?
-State management libraries are often complex, opinionated, and require quite a bit of configuration. We love React for it's simplicity and configuration so we wanted 
-to build a state management library to match. 
+State management libraries are often complex, opinionated, and require quite a bit of configuration. We love React for it's simplicity and configuration so we wanted
+to build a state management library to match.
 
 
-#### What inspired React Session? 
+#### What inspired React Session?
 React Session was heavily inspired by [Ember-Simple-Auth](https://emberjs.com).
 
 
 #### Why should I use React Session
-React Sesison is a fast, easy, and lightweight tool to manage the current user for your application. 
+React Sesison is a fast, easy, and lightweight tool to manage the current user for your application.
 
 
 #### Development vs Production Mode
@@ -168,7 +168,7 @@ React Session comes pre-bundled for production however you can pass in the `debu
 
 
 #### Who's using React Session?
-React Session is currently being being used by [Blush](https://blushednow.com). 
+React Session is currently being being used by [Blush](https://blushednow.com).
 If you're using React Session in your application, send us a message!
 
 #### Does React Session support SSR?
@@ -176,7 +176,7 @@ React Session won't block SSR however it does rely on browser-side cookies to au
 
 
 ## Development
-This project uses Webpack and comes with both a development and production environment. See `package.json` for more details. 
+This project uses Webpack and comes with both a development and production environment. See `package.json` for more details.
 - Clone this repository
 - Run `npm link` from this library
 - Open up a project where you'd like to use this library

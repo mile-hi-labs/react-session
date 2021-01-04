@@ -14,7 +14,7 @@ const RegisterRoute = (props) => {
 			<Container className='sm pt-3 pb-3'>
 
 				<SectionBlock>
-					<RegisterForm nextAction={user => history.push('/books')} />
+					<RegisterForm nextAction={user => history.push(`/users/${user.id}`)} />
 				</SectionBlock>
 
 			</Container>

@@ -18,14 +18,13 @@ const IndexRoute = (props) => {
 					<SectionHeader title='React Session Demo' />
 					<SectionBody className='xs'>
 						<p>This is a demo application for React session. The application shows how to authenticate a user, manage their session, and eventually log them out.</p>
-						<p>To get started, please do the following:</p>
+						<p>Some things to checkout:</p>
 						<ul>
 							<li>Login or register for an account</li>
-							<li>Play with the book store application</li>
+							<li>Refresh the page</li>
+							<li>Close your browser entirely</li>
 							<li>Log out of your account when finished</li>
-							<li>Review the code to see how we're doing these things.</li>
 						</ul>
-						<p>The data served by this application is destroyed / refreshed every 24 hours so don't worry about deleting your account or any changes.</p>
 					</SectionBody>
 					<SectionFooter>
 						<LinkBtn to='/login' className='btn-primary btn-block btn-lg'>
