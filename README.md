@@ -7,39 +7,94 @@ React Session uses the [Context Hook](https://reactjs.org/docs/context.html) api
 
 
 ## Quick Start
+
+
+### Install
 `npm install @mile-hi-labs/react-session`
 
+
+### Session Provider
 Add the following to your `app.jsx` file or near the top of your application.
 
 ```
-# app.jsx
+// app.jsx
 
 import React from 'react';
-import Routes from 'router';
-import { storeContext } from 'react-data';
+import { storeProvider } from '@mile-hi-labs/react-data';
+import { sessionProvider } from '@mile-hi-labs/react-session';
+import * as Adapters from 'adapters';
+import * as Serializers from 'serializers';
+import * as Models from 'models';
+import Router from 'router';
 
 
 const App = (props) => {
 
   return (
-    <div id='application' className='application'>
-      <SessionContext>
-      	<Routes />
-    	</SessionContext>
-  	</div>
-	)
+    <StoreProvider adapters={Adapters} serializers={Serializers} models={Models} apiDomain={apiDomain}>
+      <StoreContext.Consumer>
+        {store => (
+          <SessionProvider modelName='user' store={store}>
+            <Router />
+          </SessionProvider>
+        )}
+      </StoreContext.Consumer>
+    </StoreProvider>
+  )
 }
 
 export default App;
 ```
 
-Then, login  or register your user using whatever method you prefer (ie email or facebook) and then pass the user's credentials to the session for safe and secure storage like so:
+### Session Consumer
+Then, you can access the session from any route or component like so:
 
 ```
+// components/bootstrap/navbar-wrapper.jsx
+
+import React, { useEffect } from 'react';
+import { withSession } from '@mile-hi-labs/react-session';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+
+const NavBarWrapper = (props) => {
+  const { session } = props;
+
+  return (
+      <Navbar collapseOnSelect expand='lg' bg='light' variant='light'>
+      <Navbar.Brand href='/' className='mr-15'>Company Name</Navbar.Brand>
+      <Nav className='ml-auto'>
+        {session.isAuthenticated() ? (
+          <Nav.Link className='nav-user'>
+            <img src={session.user.photo} className='mr-15'/>
+            <h6>{session.user.name}</h6>
+          </Nav.Link>
+        ) : (
+          <Fragment>
+            <Nav.Link as={Link} to='/login'>Login</Nav.Link>
+            <Nav.Link as={Link} to='/register'>Register</Nav.Link>
+          </Fragment>
+        )}
+      </Nav>
+    </Navbar>
+  )
+}
+
+export default withSession(NavBarWrapper);
+```
+
+### Session Authentication
+Then, login or register your user and pass the user's credentials to the session like so:
+
+```
+// components/auth/login-form.jsx
+
 import React, { useState } from 'react';
 import { withSession } from '@mile-hi-labs/react-session';
-import Auth from 'apis/auth';
+import Axios from 'axios';
 import Form from 'react-bootstrap/Form';
+
+const LOGIN_URL = 'http://localhost:8080/auth/login';
 
 const LoginForm = (props) => {
   const { session, nextAction } = props;
@@ -48,11 +103,11 @@ const LoginForm = (props) => {
   const [ taskRunning, setTaskRunning ] = useState(false);
 
 
-  // Tasks
+  // Methods
   const login = async () => {
     try {
-    	setTaskRunning(true);
-      let model = await Auth.login({email: email, password: password});
+      setTaskRunning(true);
+      let model = await Axios.post(LOGIN_URL, {email: email, password: password});
       await session.authenticate('admin', model);
       console.log('Login Succeeded!');
       nextAction();
@@ -64,16 +119,9 @@ const LoginForm = (props) => {
   }
 
 
-  // Methods
-  const handleSubmit = (e) => {
-    login();
-    e.preventDefault();
-  }
-
-
   // Render
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={e => e.preventDefault()}>
       <Form.Group controlId='email'>
         <Form.Label>Email Address</Form.Label>
         <Form.Control
@@ -108,71 +156,6 @@ const LoginForm = (props) => {
 
 export default withSession(LoginForm);
 ```
-
-
-Then, you can access the session from any route or component like so:
-
-```
-# components/bootstrap/navbar-wrapper.jsx
-
-import React, { useEffect } from 'react';
-import { withSession } from '@mile-hi-labs/react-session';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-
-const NavBarWrapper = (props) => {
-	const { session } = props;
-
-	return (
-			<Navbar collapseOnSelect expand='lg' bg='light' variant='light'>
-			<Navbar.Brand href='/' className='mr-15'>Company Name</Navbar.Brand>
-			<Nav className='ml-auto'>
-				{session.isAuthenticated() ? (
-					<Nav.Link className='nav-user'>
-						<img src={session.user.photo} className='mr-15'/>
-						<h6>{session.user.name}</h6>
-					</Nav.Link>
-				) : (
-					<Fragment>
-						<Nav.Link as={Link} to='/login'>Login</Nav.Link>
-						<Nav.Link as={Link} to='/register'>Register</Nav.Link>
-					</Fragment>
-				)}
-			</Nav>
-		</Navbar>
-	)
-}
-
-export default withSession(NavBarWrapper);
-
-```
-
-
-## FAQ
-
-#### Why React Session?
-State management libraries are often complex, opinionated, and require quite a bit of configuration. We love React for it's simplicity and configuration so we wanted
-to build a state management library to match.
-
-
-#### What inspired React Session?
-React Session was heavily inspired by [Ember-Simple-Auth](https://emberjs.com).
-
-
-#### Why should I use React Session
-React Sesison is a fast, easy, and lightweight tool to manage the current user for your application.
-
-
-#### Development vs Production Mode
-React Session comes pre-bundled for production however you can pass in the `debug` option set to `true` if you'd like additional logging.
-
-
-#### Who's using React Session?
-React Session is currently being being used by [Blush](https://blushednow.com).
-If you're using React Session in your application, send us a message!
-
-#### Does React Session support SSR?
-React Session won't block SSR however it does rely on browser-side cookies to authenticate the session meaning the current user will not be available on the initial page load.
 
 
 ## Development

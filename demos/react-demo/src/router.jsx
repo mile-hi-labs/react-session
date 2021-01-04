@@ -6,7 +6,6 @@ import { withToast } from 'contexts/toast-context';
 
 // Routes
 import IndexRoute from 'routes/index';
-
 import LoginRoute from 'routes/auth/login';
 import RegisterRoute from 'routes/auth/register';
 import UsersDetailRoute from 'routes/users/detail';
