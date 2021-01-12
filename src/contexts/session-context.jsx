@@ -33,7 +33,6 @@ class SessionProvider extends Component {
   async loadUser(store, modelName, modelId, token, params = {}) {
     try {
       store.adapterFor('').set('token', token);
-      store.adapterFor('').set('apiDomain', store.apiDomain);
       let model = await store.findRecord(modelName, modelId, params);
       await this.setState({ token: token, user: model }, () => logger('React Session: ', this.state));
     } catch(e) {

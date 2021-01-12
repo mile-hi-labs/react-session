@@ -1472,18 +1472,18 @@
     "@types/yargs" "^15.0.0"
     "chalk" "^4.0.0"
 
-"@mile-hi-labs/react-data@^2.0.16":
-  "integrity" "sha512-H2TjW0OEGWNReC1/+6kjtS0YLs+ttYngOUYoxxK1F911JVQEhEIk+Fy4GgVDiZhU3GaZ1iHH42WbRfT7ZILkBw=="
-  "resolved" "https://registry.npmjs.org/@mile-hi-labs/react-data/-/react-data-2.0.16.tgz"
-  "version" "2.0.16"
+"@mile-hi-labs/react-data@^2.1.2":
+  "integrity" "sha512-AKfpYhNz2KBOrnlwHL1aBE4ugewXZxLX2L96pPhXxrLTx/X1VaW3KGEBlcmSnlYQhqFHu6Yvs5z4U903fsJqrg=="
+  "resolved" "https://registry.npmjs.org/@mile-hi-labs/react-data/-/react-data-2.1.2.tgz"
+  "version" "2.1.2"
   dependencies:
     "axios" "^0.19.2"
     "pluralize" "^8.0.0"
 
-"@mile-hi-labs/react-session@^2.0.5":
-  "integrity" "sha512-PQ8Ez8/DpK46CJEFjYpFJVwNV5xlmoNe1+3Xtb/UNSZXUBO0WdLmt4mBR8S5H7uI0u9apfZmQQK699mQEpIEMg=="
-  "resolved" "https://registry.npmjs.org/@mile-hi-labs/react-session/-/react-session-2.0.5.tgz"
-  "version" "2.0.5"
+"@mile-hi-labs/react-session@^2.1.1":
+  "integrity" "sha512-/JwxQBPEIMJ9M/ZvDbpEXBSwLteQNjdupsel9ZsdmUXEKL2P/y6IGro64Z+DIOvVyGYEVwLuxupYsXlHu+SY8Q=="
+  "resolved" "https://registry.npmjs.org/@mile-hi-labs/react-session/-/react-session-2.1.1.tgz"
+  "version" "2.1.1"
   dependencies:
     "local-storage" "^2.0.0"
 
