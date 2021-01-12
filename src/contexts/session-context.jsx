@@ -25,7 +25,6 @@ class SessionProvider extends Component {
     let store = this.props.store;
     let userId = LocalStorage.get('userId');
     let token = LocalStorage.get('token');
-    logger('React Session initiated: ', this.state);
     userId && token ? this.loadUser(store, this.state.modelName, userId, token, this.props.params) : this.setState({ loaded: true });
   }
 
@@ -36,8 +35,7 @@ class SessionProvider extends Component {
       store.adapterFor('').set('token', token);
       store.adapterFor('').set('apiDomain', store.apiDomain);
       let model = await store.findRecord(modelName, modelId, params);
-      await this.setState({ token: token, user: model });
-      logger('React Session authenticated: ', this.state);
+      await this.setState({ token: token, user: model }, () => logger('React Session: ', this.state));
     } catch(e) {
       logger(e);
       await this.logout();
@@ -55,8 +53,7 @@ class SessionProvider extends Component {
 
   async logout() {
     localStorage.clear();
-    await this.setState({ userId: '', token: '', user: {} });
-    logger('Session terminated: ', this.state);
+    await this.setState({ userId: '', token: '', user: {} }, () => logger('React Session: ', this.state));
   }
 
   authenticated() {
