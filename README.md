@@ -166,8 +166,7 @@ This project comes with a built-in React demo.
 This projects uses Webpack to build the project. Please see `package.json` for available scripts.
 - Clone this repository
 - Run `npm link` from this project
-- Open up desired project / demo and run `npm link @mile-hi-labs/react-session`
-- You can now develop both projects simultaneously
+- Open up the desired project / demo and run `npm link @mile-hi-labs/react-session`
 - Run `npm run build` to push code from this project to the consuming project
 - You should be able to debug via your browser like normal.
 
