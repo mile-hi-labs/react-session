@@ -11,7 +11,7 @@ import { SectionBlock, SectionHeader, SectionBody, SectionFooter } from 'compone
 import { FarIcon } from 'components/vendors/fa-wrapper';
 import { isEmpty, logger } from 'utils/helpers';
 
-const REGISTER_URL = 'http://localhost:8080/auth/register';
+const REGISTER_URL = 'https://library-api.milehilabs.dev/auth/register';
 
 const RegisterForm = (props) => {
   const { session, store, toast, nextAction } = props;
@@ -19,6 +19,12 @@ const RegisterForm = (props) => {
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ taskRunning, setTaskRunning ] = useState(false);
+
+
+  // Hooks
+  useEffect(() => {
+    return () => setTaskRunning(false);
+  }, [])
 
 
   // Methods

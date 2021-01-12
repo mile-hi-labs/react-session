@@ -44,10 +44,11 @@ const UsersDetailRoute = (props) => {
 				<SectionBlock>
 					<SectionHeader title={`Welcome, ${user.name}`} />
 					<SectionBody className='xs'>
-						<p>This is your user profile. There isn't much here but you can logout using the button below.</p>
+						<p>This is your user profile. Refresh the page or close your browser window and then return to see that the session persists.</p>
+						<p>When you're finished, you can logout using the button below.</p>
 					</SectionBody>
 					<SectionFooter>
-						<Button size='lg' onClick={() => logout()} className='btn-primary btn-block'>
+						<Button size='lg' className='btn-primary btn-block'>
 							Logout<FarIcon icon='chevron-right' className='ml-2'/>
 						</Button>
 					</SectionFooter>

@@ -9,7 +9,7 @@ import Router from 'router';
 
 
 const App = (props) => {
-  const apiDomain = 'http://library-api.milehilabs.dev';
+  const apiDomain = 'https://library-api.milehilabs.dev';
 
 
   // Render

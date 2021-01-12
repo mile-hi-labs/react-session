@@ -11,7 +11,7 @@ import { SectionBlock, SectionHeader, SectionBody, SectionFooter } from 'compone
 import { FarIcon } from 'components/vendors/fa-wrapper';
 import { isEmpty, logger } from 'utils/helpers';
 
-const LOGIN_URL = 'http://localhost:8080/auth/login';
+const LOGIN_URL = 'https://library-api.milehilabs.dev/auth/login';
 
 const LoginForm = (props) => {
   const { session, store, toast, nextAction } = props;
@@ -20,8 +20,14 @@ const LoginForm = (props) => {
   const [ taskRunning, setTaskRunning ] = useState(false);
 
 
+  // Hooks
+  useEffect(() => {
+    return () => setTaskRunning(false);
+  }, [])
+
+
   // Methods
-  const SubmitAuth = async () => {
+  const submitAuth = async () => {
     try {
       setTaskRunning(true);
       let data = store.serializerFor('app').serialize({ email: email, password: password });
@@ -67,7 +73,7 @@ const LoginForm = (props) => {
             size='lg'
             variant='primary'
             taskRunning={taskRunning}
-            onClick={() => SubmitAuth()}
+            onClick={() => submitAuth()}
             className='btn-block'>
             Login<FarIcon icon='chevron-right' className='ml-2'/>
           </Button>

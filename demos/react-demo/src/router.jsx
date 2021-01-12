@@ -16,7 +16,8 @@ import ErrorBoundary from 'utils/error-boundary';
 
 const Router = (props) => {
   const { session, store, toast } = props;
-  const passedProps = { session: session, store: store, toast: toast }
+  const passedProps = { session: session, store: store, toast: toast };
+
 
   // Render
   return (
@@ -25,14 +26,9 @@ const Router = (props) => {
 	      <Route exact path='/' render={routeProps => <IndexRoute {...passedProps} {...routeProps}/>} />
         <Route exact path='/login' render={routeProps => <LoginRoute {...passedProps} {...routeProps}/>} />
         <Route exact path='/register' render={routeProps => <RegisterRoute {...passedProps} {...routeProps}/>} />
-        {session.authenticated() ? (
-          <Route path='/users/:userId'>
-            <UsersDetail {...passedProps} />
-          </Route>
-        ) : (
-          <Redirect to='/login'/>
-        )}
-
+        <Route path='/users/:userId'>
+          {session.authenticated() ? <UsersDetail {...passedProps} /> : <Redirect to='/login'/> }
+        </Route>
         <Route path='/*'>
           <Redirect to='/'/>
         </Route>

@@ -1472,21 +1472,20 @@
     "@types/yargs" "^15.0.0"
     "chalk" "^4.0.0"
 
-"@mile-hi-labs/react-data@latest":
-  "integrity" "sha512-7eogcBPX8A6z0hR3zO33fhVtkLv3uXUdZLYTNRXr6Tqo29LJU530AssfMU2BMzjnW+Xgb2C21p8NjJgkzqM1sQ=="
-  "resolved" "https://registry.npmjs.org/@mile-hi-labs/react-data/-/react-data-2.0.10.tgz"
-  "version" "2.0.10"
+"@mile-hi-labs/react-data@^2.0.16":
+  "integrity" "sha512-H2TjW0OEGWNReC1/+6kjtS0YLs+ttYngOUYoxxK1F911JVQEhEIk+Fy4GgVDiZhU3GaZ1iHH42WbRfT7ZILkBw=="
+  "resolved" "https://registry.npmjs.org/@mile-hi-labs/react-data/-/react-data-2.0.16.tgz"
+  "version" "2.0.16"
   dependencies:
     "axios" "^0.19.2"
     "pluralize" "^8.0.0"
 
-"@mile-hi-labs/react-session@latest":
-  "integrity" "sha512-SE/Ac8xaadQECuxhZ6ccxx8jJBG7jyBDIkNr54lRkzS/ot5sAp3YPjKC2LOyQosTihuNDweW8ZCtOjSYMB9x3g=="
-  "resolved" "https://registry.npmjs.org/@mile-hi-labs/react-session/-/react-session-2.0.1.tgz"
-  "version" "2.0.1"
+"@mile-hi-labs/react-session@^2.0.5":
+  "integrity" "sha512-PQ8Ez8/DpK46CJEFjYpFJVwNV5xlmoNe1+3Xtb/UNSZXUBO0WdLmt4mBR8S5H7uI0u9apfZmQQK699mQEpIEMg=="
+  "resolved" "https://registry.npmjs.org/@mile-hi-labs/react-session/-/react-session-2.0.5.tgz"
+  "version" "2.0.5"
   dependencies:
     "local-storage" "^2.0.0"
-    "pluralize" "^8.0.0"
 
 "@nodelib/fs.scandir@2.1.3":
   "integrity" "sha512-eGmwYQn3gxo4r7jdQnkrrN6bY478C3P+a/y72IJukF8LjB6ZHeB3c+Ehacj3sYeSmUXGlnA67/PmbM9CVwL7Dw=="
@@ -2615,6 +2614,13 @@
   "version" "0.19.2"
   dependencies:
     "follow-redirects" "1.5.10"
+
+"axios@^0.21.1":
+  "integrity" "sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA=="
+  "resolved" "https://registry.npmjs.org/axios/-/axios-0.21.1.tgz"
+  "version" "0.21.1"
+  dependencies:
+    "follow-redirects" "^1.10.0"
 
 "axobject-query@^2.2.0":
   "integrity" "sha512-Td525n+iPOOyUQIeBfcASuG6uJsDOITl7Mds5gFyerkWiX7qhUTdYUBlSgNMyVqtSJqwpt1kXGLdUt6SykLMRA=="
@@ -5439,7 +5445,7 @@
     "inherits" "^2.0.3"
     "readable-stream" "^2.3.6"
 
-"follow-redirects@^1.0.0":
+"follow-redirects@^1.0.0", "follow-redirects@^1.10.0":
   "integrity" "sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA=="
   "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.13.0.tgz"
   "version" "1.13.0"

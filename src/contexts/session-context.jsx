@@ -8,9 +8,9 @@ class SessionProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      modelName: this.props.modelName || 'user',
       user: {},
       token: null,
-      model: this.props.model || 'user',
       loadUser: this.loadUser.bind(this),
       authenticated: this.authenticated.bind(this),
       authenticate: this.authenticate.bind(this),
@@ -22,32 +22,35 @@ class SessionProvider extends Component {
 
   // Hooks
   componentDidMount() {
-    logger('React Session initiated...');
+    let store = this.props.store;
     let userId = LocalStorage.get('userId');
     let token = LocalStorage.get('token');
-    userId && token ? this.loadUser(this.state.model, userId, token, this.props.params) : this.setState({ loaded: true });
+    logger('React Session initiated: ', this.state);
+    userId && token ? this.loadUser(store, this.state.modelName, userId, token, this.props.params) : this.setState({ loaded: true });
   }
 
 
   // Methods
-  async loadUser(modelName, modelId, token, params = {}) {
+  async loadUser(store, modelName, modelId, token, params = {}) {
     try {
-      if (!this.props.store) {  return };
-      this.props.store.adapterFor('app').token = token;
-      let model = await this.props.store.findRecord(modelName, modelId, params);
-      logger('Session authenticated: ', this.state);
+      store.adapterFor('').set('token', token);
+      store.adapterFor('').set('apiDomain', store.apiDomain);
+      let model = await store.findRecord(modelName, modelId, params);
       await this.setState({ token: token, user: model });
+      logger('React Session authenticated: ', this.state);
     } catch(e) {
+      logger(e);
       await this.logout();
     } finally {
       this.setState({ loaded: true });
     }
   }
 
-  async authenticate(model, data) {
+  async authenticate(modelName, data) {
+    let store = this.props.store;
     LocalStorage.set('userId', data.id);
     LocalStorage.set('token', data.token);
-    return await this.loadUser(model, data.id, data.token, {});
+    return await this.loadUser(store, modelName, data.id, data.token, {});
   }
 
   async logout() {
@@ -68,7 +71,7 @@ class SessionProvider extends Component {
 
     return (
       <SessionContext.Provider value={this.state}>
-        {children}
+        {loaded ? children : null}
       </SessionContext.Provider>
     )
   }
