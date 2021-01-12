@@ -37,7 +37,6 @@ class SessionProvider extends Component {
       let model = await store.findRecord(modelName, modelId, params);
       await this.setState({ token: token, user: model }, () => logger('React Session: ', this.state));
     } catch(e) {
-      logger(e);
       await this.logout();
     } finally {
       this.setState({ loaded: true });
