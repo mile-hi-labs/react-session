@@ -1472,18 +1472,19 @@
     "@types/yargs" "^15.0.0"
     "chalk" "^4.0.0"
 
-"@mile-hi-labs/react-data@^2.1.2":
-  "integrity" "sha512-AKfpYhNz2KBOrnlwHL1aBE4ugewXZxLX2L96pPhXxrLTx/X1VaW3KGEBlcmSnlYQhqFHu6Yvs5z4U903fsJqrg=="
-  "resolved" "https://registry.npmjs.org/@mile-hi-labs/react-data/-/react-data-2.1.2.tgz"
+"@mile-hi-labs/react-data@file:../../../react-data":
+  "resolved" "file:../../../react-data"
   "version" "2.1.2"
   dependencies:
     "axios" "^0.19.2"
+    "eslint" "^7.17.0"
+    "eslint-config-react-app" "^6.0.0"
     "pluralize" "^8.0.0"
+    "prettier" "^2.2.1"
 
-"@mile-hi-labs/react-session@^2.1.1":
-  "integrity" "sha512-/JwxQBPEIMJ9M/ZvDbpEXBSwLteQNjdupsel9ZsdmUXEKL2P/y6IGro64Z+DIOvVyGYEVwLuxupYsXlHu+SY8Q=="
-  "resolved" "https://registry.npmjs.org/@mile-hi-labs/react-session/-/react-session-2.1.1.tgz"
-  "version" "2.1.1"
+"@mile-hi-labs/react-session@file:../..":
+  "resolved" "file:../.."
+  "version" "2.1.2"
   dependencies:
     "local-storage" "^2.0.0"
 
@@ -2607,13 +2608,6 @@
   "integrity" "sha512-5Kgy8Cz6LPC9DJcNb3yjAXTu3XihQgEdnIg50c//zOC/MyLP0Clg+Y8Sh9ZjjnvBrDZU4DgXS9C3T9r4/scGZQ=="
   "resolved" "https://registry.npmjs.org/axe-core/-/axe-core-4.1.1.tgz"
   "version" "4.1.1"
-
-"axios@^0.19.2":
-  "integrity" "sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA=="
-  "resolved" "https://registry.npmjs.org/axios/-/axios-0.19.2.tgz"
-  "version" "0.19.2"
-  dependencies:
-    "follow-redirects" "1.5.10"
 
 "axios@^0.21.1":
   "integrity" "sha512-dKQiRHxGD9PPRIUNIWvZhPTPpl1rf/OxTYKsqKUDjBwYylTvV7SjSHJb9ratfyzM6wCdLCOYLzs73qpg5c4iGA=="
@@ -4199,13 +4193,6 @@
   dependencies:
     "ms" "2.1.2"
 
-"debug@=3.1.0":
-  "integrity" "sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g=="
-  "resolved" "https://registry.npmjs.org/debug/-/debug-3.1.0.tgz"
-  "version" "3.1.0"
-  dependencies:
-    "ms" "2.0.0"
-
 "debug@2.6.9":
   "integrity" "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA=="
   "resolved" "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz"
@@ -4967,7 +4954,7 @@
     "micromatch" "^4.0.2"
     "schema-utils" "^3.0.0"
 
-"eslint@*", "eslint@^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0", "eslint@^3 || ^4 || ^5 || ^6 || ^7", "eslint@^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0", "eslint@^5 || ^6 || ^7", "eslint@^5.0.0 || ^6.0.0 || ^7.0.0", "eslint@^7.0.0", "eslint@^7.1.0", "eslint@^7.11.0", "eslint@^7.5.0", "eslint@>= 4.12.1", "eslint@>=5":
+"eslint@*", "eslint@^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0", "eslint@^3 || ^4 || ^5 || ^6 || ^7", "eslint@^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0", "eslint@^5 || ^6 || ^7", "eslint@^5.0.0 || ^6.0.0 || ^7.0.0", "eslint@^7.0.0", "eslint@^7.1.0", "eslint@^7.11.0", "eslint@^7.14.0", "eslint@^7.5.0", "eslint@>= 4.12.1", "eslint@>=5":
   "integrity" "sha512-5YubdnPXrlrYAFCKybPuHIAH++PINe1pmKNc5wQRB9HSbqIK1ywAnntE3Wwua4giKu0bjligf1gLF6qxMGOYRA=="
   "resolved" "https://registry.npmjs.org/eslint/-/eslint-7.14.0.tgz"
   "version" "7.14.0"
@@ -5449,13 +5436,6 @@
   "integrity" "sha512-aq6gF1BEKje4a9i9+5jimNFIpq4Q1WiwBToeRK5NvZBd/TRsmW8BsJfOEGkr76TbOyPVD3OVDN910EcUNtRYEA=="
   "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.13.0.tgz"
   "version" "1.13.0"
-
-"follow-redirects@1.5.10":
-  "integrity" "sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ=="
-  "resolved" "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.5.10.tgz"
-  "version" "1.5.10"
-  dependencies:
-    "debug" "=3.1.0"
 
 "for-in@^1.0.2":
   "integrity" "sha1-gQaNKVqBQuwKxybG4iAMMPttXoA="
@@ -7465,11 +7445,6 @@
     "big.js" "^5.2.2"
     "emojis-list" "^2.0.0"
     "json5" "^1.0.1"
-
-"local-storage@^2.0.0":
-  "integrity" "sha512-/0sRoeijw7yr/igbVVygDuq6dlYCmtsuTmmpnweVlVtl/s10pf5BCq8LWBxW/AMyFJ3MhMUuggMZiYlx6qr9tw=="
-  "resolved" "https://registry.npmjs.org/local-storage/-/local-storage-2.0.0.tgz"
-  "version" "2.0.0"
 
 "locate-path@^2.0.0":
   "integrity" "sha1-K1aLJl7slExtnA3pw9u7ygNUzY4="
@@ -9487,6 +9462,11 @@
   "resolved" "https://registry.npmjs.org/prepend-http/-/prepend-http-1.0.4.tgz"
   "version" "1.0.4"
 
+"prettier@^2.2.1":
+  "integrity" "sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q=="
+  "resolved" "https://registry.npmjs.org/prettier/-/prettier-2.2.1.tgz"
+  "version" "2.2.1"
+
 "pretty-bytes@^5.3.0":
   "integrity" "sha512-s1Iam6Gwz3JI5Hweaz4GoCD1WUNUIyzePFy5+Js2hjwGVt2Z79wNN+ZKOZ2vB6C+Xs6njyB84Z1IthQg8d9LxA=="
   "resolved" "https://registry.npmjs.org/pretty-bytes/-/pretty-bytes-5.4.1.tgz"
@@ -9724,13 +9704,6 @@
     "regenerator-runtime" "^0.13.7"
     "whatwg-fetch" "^3.4.1"
 
-"react-app-rewired@^2.1.8":
-  "integrity" "sha512-wjXPdKPLscA7mn0I1de1NHrbfWdXz4S1ladaGgHVKdn1hTgKK5N6EdGIJM0KrS6bKnJBj7WuqJroDTsPKKr66Q=="
-  "resolved" "https://registry.npmjs.org/react-app-rewired/-/react-app-rewired-2.1.8.tgz"
-  "version" "2.1.8"
-  dependencies:
-    "semver" "^5.6.0"
-
 "react-bootstrap@^1.4.0":
   "integrity" "sha512-0BMzgeUAxH126v7VYDzIXbHxQVHSnniPVKpz9fblumdQpWaiElMnnzk+u8h8DoELX0nCXwPlcUzgXqmpncdc2Q=="
   "resolved" "https://registry.npmjs.org/react-bootstrap/-/react-bootstrap-1.4.0.tgz"
@@ -9889,7 +9862,7 @@
   "resolved" "https://registry.npmjs.org/react-sanitized-html/-/react-sanitized-html-2.0.0.tgz"
   "version" "2.0.0"
 
-"react-scripts@>=2.1.3", "react-scripts@4.0.1":
+"react-scripts@4.0.1":
   "integrity" "sha512-NnniMSC/wjwhcJAyPJCWtxx6CWONqgvGgV9+QXj1bwoW/JI++YF1eEf3Upf/mQ9KmP57IBdjzWs1XvnPq7qMTQ=="
   "resolved" "https://registry.npmjs.org/react-scripts/-/react-scripts-4.0.1.tgz"
   "version" "4.0.1"
