@@ -29,7 +29,9 @@
     "build": "webpack --env development",
     "build:prod": "webpack --env production",
     "deploy": "npm run clean && npm run build && npm run build:prod && npm publish",
-    "deploy:test": "npm run clean && npm run build && npm run build:prod && npm publish --dry-run"
+    "deploy:test": "npm run clean && npm run build && npm run build:prod && npm publish --dry-run",
+    "format": "prettier --write src/**/*.jsx",
+    "lint": "eslint src/**/*.js[x]"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",
@@ -38,6 +40,9 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.24.1",
     "compression-webpack-plugin": "^5.0.0",
+    "eslint": "^7.17.0",
+    "eslint-config-react-app": "^6.0.0",
+    "prettier": "^2.2.1",
     "react": "^16.13.1",
     "rimraf": "^2.7.1",
     "webpack": "^4.44.2",

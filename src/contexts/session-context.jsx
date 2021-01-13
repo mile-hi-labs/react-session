@@ -19,23 +19,25 @@ class SessionProvider extends Component {
     };
   }
 
-
   // Hooks
   componentDidMount() {
     let store = this.props.store;
     let userId = LocalStorage.get('userId');
     let token = LocalStorage.get('token');
-    userId && token ? this.loadUser(store, this.state.modelName, userId, token, this.props.params) : this.setState({ loaded: true });
+    userId && token
+      ? this.loadUser(store, this.state.modelName, userId, token, this.props.params)
+      : this.setState({ loaded: true });
   }
-
 
   // Methods
   async loadUser(store, modelName, modelId, token, params = {}) {
     try {
       store.adapterFor('').set('token', token);
       let model = await store.findRecord(modelName, modelId, params);
-      await this.setState({ token: token, user: model }, () => logger('React Session: ', this.state));
-    } catch(e) {
+      await this.setState({ token: token, user: model }, () =>
+        logger('React Session: ', this.state)
+      );
+    } catch (e) {
       await this.logout();
     } finally {
       this.setState({ loaded: true });
@@ -51,28 +53,29 @@ class SessionProvider extends Component {
 
   async logout() {
     localStorage.clear();
-    await this.setState({ userId: '', token: '', user: {} }, () => logger('React Session: ', this.state));
+    await this.setState({ userId: '', token: '', user: {} }, () =>
+      logger('React Session: ', this.state)
+    );
   }
 
   authenticated() {
     return this.state.user.id ? true : false;
   }
 
-
   // Render
   render() {
     const { loaded } = this.state;
-    const { store, children } = this.props;
+    const { children } = this.props;
 
     return (
       <SessionContext.Provider value={this.state}>
-        {loaded ? children : null}
+        {children}
       </SessionContext.Provider>
-    )
+    );
   }
-};
+}
 
-const withSession = function(WrappedFunction) {
+const withSession = function (WrappedFunction) {
   return class extends Component {
     render() {
       return (
@@ -81,7 +84,7 @@ const withSession = function(WrappedFunction) {
         </SessionContext.Consumer>
       );
     }
-  }
+  };
 };
 
 export { SessionProvider, withSession };
