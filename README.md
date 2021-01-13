@@ -171,6 +171,10 @@ This projects uses Webpack to build the project. Please see `package.json` for a
 - You should be able to debug via your browser like normal.
 
 
+## Publish
+- Run `npm run deploy 'commit message'` to build, deploy, and commit the changes
+
+
 ## Links
 - [Github](https://github.com/mile-hi-labs/react-session)
 - [API Documentation](https://app.gitbook.com/@mile-hi-labs/s/react-session/)
