@@ -48,7 +48,7 @@ const UsersDetailRoute = (props) => {
 						<p>When you're finished, you can logout using the button below.</p>
 					</SectionBody>
 					<SectionFooter>
-						<Button size='lg' className='btn-primary btn-block'>
+						<Button size='lg' className='btn-primary btn-block' onClick={() => logout()}>
 							Logout<FarIcon icon='chevron-right' className='ml-2'/>
 						</Button>
 					</SectionFooter>

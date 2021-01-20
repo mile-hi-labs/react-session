@@ -29,7 +29,7 @@
     "test": "react-scripts test",
     "link": "npm link @mile-hi-labs/react-data && npm link @mile-hi-labs/react-session",
     "unlink": "npm unlink @mile-hi-labs/react-data && npm unlink @mile-hi-labs/react-session",
-    "packages": "npm unlink @mile-hi-labs/react-data@latest && npm unlink @mile-hi-labs/react-session@latest"
+    "packages": "npm install @mile-hi-labs/react-data@latest && npm install @mile-hi-labs/react-session@latest"
   },
   "browserslist": {
     "production": [

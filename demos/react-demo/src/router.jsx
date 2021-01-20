@@ -27,8 +27,9 @@ const Router = (props) => {
         <Route exact path='/login' render={routeProps => <LoginRoute {...passedProps} {...routeProps}/>} />
         <Route exact path='/register' render={routeProps => <RegisterRoute {...passedProps} {...routeProps}/>} />
         <Route path='/users/:userId'>
-          {session.loaded && session.authenticated() && <UsersDetail {...passedProps} />}
-          {session.loaded && !session.authenticated() && <Redirect to='/login'/> }
+          {session.loaded && (
+            session.authenticated() ? <UsersDetail {...passedProps} /> : <Redirect to='/login'/>
+          )}
         </Route>
         <Route path='/*'>
           <Redirect to='/'/>

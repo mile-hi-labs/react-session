@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LocalStorage from 'local-storage';
+import { loadContext } from 'session/load-context';
 import { logger } from 'utils/helpers';
 
 const SessionContext = React.createContext();
@@ -8,10 +9,10 @@ class SessionProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modelName: this.props.modelName || 'user',
       user: {},
-      token: null,
-      loadUser: this.loadUser.bind(this),
+      params: this.props.params || {},
+      modelName: this.props.modelName || 'user',
+      loadSession: this.loadSession.bind(this),
       authenticated: this.authenticated.bind(this),
       authenticate: this.authenticate.bind(this),
       logout: this.logout.bind(this),
@@ -22,25 +23,38 @@ class SessionProvider extends Component {
   // Hooks
   componentDidMount() {
     let store = this.props.store;
+    let modelName = this.state.modelName;
     let userId = LocalStorage.get('userId');
     let token = LocalStorage.get('token');
-    userId && token
-      ? this.loadUser(store, this.state.modelName, userId, token, this.props.params)
-      : this.setState({ loaded: true });
+    let params = this.state.params;
+    (userId && token) ? this.loadSession(store, modelName, userId, token, params) : this.setState({ loaded: true });
   }
 
   // Methods
-  async loadUser(store, modelName, modelId, token, params = {}) {
+  async loadSession(store, modelName, modelId, token, params = {}) {
     try {
       store.adapterFor('').set('token', token);
       let model = await store.findRecord(modelName, modelId, params);
-      await this.setState({ token: token, user: model }, () =>
-        logger('React Session: ', this.state)
-      );
+      logger('React Session: ', this.state);
+      this.setState({ user: model, token: token });
     } catch (e) {
+      logger(e);
       await this.logout();
     } finally {
       this.setState({ loaded: true });
+    }
+  }
+
+  async updateSession() {
+    try {
+      let store = this.props.store;
+      let modelName = this.state.modelName;
+      let userId = LocalStorage.get('userId');
+      let token = LocalStorage.get('token');
+      let params = this.state.params;
+      return await this.loadSession(store, modelName, userId, token, params);
+    } catch (e) {
+      logger(e);
     }
   }
 
@@ -48,14 +62,13 @@ class SessionProvider extends Component {
     let store = this.props.store;
     LocalStorage.set('userId', data.id);
     LocalStorage.set('token', data.token);
-    return await this.loadUser(store, modelName, data.id, data.token, {});
+    let params = this.state.params;
+    return await this.loadSession(store, modelName, data.id, data.token, params);
   }
 
   async logout() {
     localStorage.clear();
-    await this.setState({ userId: '', token: '', user: {} }, () =>
-      logger('React Session: ', this.state)
-    );
+    await this.setState({userId: null, token: null, user: {}}, () => logger('React Session: ', this.state));
   }
 
   authenticated() {
@@ -69,7 +82,7 @@ class SessionProvider extends Component {
 
     return (
       <SessionContext.Provider value={this.state}>
-        {children}
+        {loaded ? children : null}
       </SessionContext.Provider>
     );
   }

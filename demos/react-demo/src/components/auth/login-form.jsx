@@ -32,7 +32,7 @@ const LoginForm = (props) => {
       setTaskRunning(true);
       let data = store.serializerFor('app').serialize({ email: email, password: password });
       let response = await Axios.post(LOGIN_URL, data);
-      let user = store.serializerFor('app').normalize(response.data.data);
+      let user = store.serializerFor('app').normalize(response.data);
       await session.authenticate('user', user);
       toast.showSuccess('User authenticated!');
       nextAction(user);
