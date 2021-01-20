@@ -10,6 +10,7 @@ class SessionProvider extends Component {
     super(props);
     this.state = {
       user: {},
+      token: null,
       params: this.props.params || {},
       modelName: this.props.modelName || 'user',
       loadSession: this.loadSession.bind(this),
@@ -34,7 +35,7 @@ class SessionProvider extends Component {
   async loadSession(store, modelName, modelId, token, params = {}) {
     try {
       store.adapterFor('').set('token', token);
-      let model = await store.findRecord(modelName, modelId, params);
+      let model = await store.queryRecord(modelName, modelId, params);
       logger('React Session: ', this.state);
       this.setState({ user: model, token: token });
     } catch (e) {
@@ -100,4 +101,4 @@ const withSession = function (WrappedFunction) {
   };
 };
 
-export { SessionProvider, withSession };
+export { SessionProvider, SessionContext, withSession };

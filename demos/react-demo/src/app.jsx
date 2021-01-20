@@ -15,15 +15,11 @@ const App = (props) => {
   // Render
   return (
     <StoreProvider context={store}>
-    	<StoreContext.Consumer>
-    		{store => (
-		    	<SessionProvider store={store}>
-		      	<ToastProvider>
-		        	<Router />
-		      	</ToastProvider>
-		    	</SessionProvider>
-	    	)}
-    	</StoreContext.Consumer>
+    	<SessionProvider store={store}>
+      	<ToastProvider>
+        	<Router />
+      	</ToastProvider>
+    	</SessionProvider>
     </StoreProvider>
   );
 }
