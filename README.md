@@ -172,7 +172,9 @@ This projects uses Webpack to build the project. Please see `package.json` for a
 
 
 ## Publish
-- Run `npm run deploy 'commit message'` to build, deploy, and commit the changes
+- Commit changes
+- Run `npm version patch` (or minor / major) to bump the version, build, deploy, and commit the new version.
+- https://docs.npmjs.com/cli/v6/commands/npm-version
 
 
 ## Links

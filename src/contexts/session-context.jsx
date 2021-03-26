@@ -36,8 +36,7 @@ class SessionProvider extends Component {
     try {
       store.adapterFor('').set('token', token);
       let model = await store.queryRecord(modelName, modelId, params);
-      logger('React Session: ', this.state);
-      this.setState({ user: model, token: token });
+      this.setState({ user: model, token: token }, () => logger('React Session: ', this.state));
     } catch (e) {
       logger(e);
       await this.logout();
@@ -69,7 +68,7 @@ class SessionProvider extends Component {
 
   async logout() {
     localStorage.clear();
-    await this.setState({userId: null, token: null, user: {}}, () => logger('React Session: ', this.state));
+    await this.setState({ token: null, user: {} }, () => logger('React Session: ', this.state));
   }
 
   authenticated() {
@@ -83,7 +82,7 @@ class SessionProvider extends Component {
 
     return (
       <SessionContext.Provider value={this.state}>
-        {loaded ? children : null}
+        {children}
       </SessionContext.Provider>
     );
   }
