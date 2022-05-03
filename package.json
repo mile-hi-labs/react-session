@@ -11,6 +11,9 @@
     "url": "https://github.com/ehubbell"
   },
   "repository": "https://github.com/mile-hi-labs/react-session",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },  
   "bugs": {
     "url": "https://github.com//mile-hi-labs/react-session/issues"
   },
